@@ -99,7 +99,7 @@ char* floatFormat(char* value, int desiredDecimals){
     if (desiredDecimals < numOfDecimals)
     {
         char* res = malloc(40);
-        strncpy(res, value, positionOfDot+desiredDecimals);
+        strncpy(res, value, positionOfDot+desiredDecimals+1);
         return res;
     }
 
