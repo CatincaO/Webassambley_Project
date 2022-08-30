@@ -8,6 +8,11 @@
      <input type="number" id="n1"/><br/><br/>
 
      <input type="number" id="n2"/><br/><br/>
+
+     <input type="number" id="n3"/><br/><br/>
+
+     <input type="number" id="n4"/><br/><br/>
+     <input type="button" value="Format" onclick="callFormat()" />
      <script>
        function callAdd() {
         var x = parseFloat(document.getElementById('n1').value);
@@ -20,6 +25,19 @@
   
          console.log(`Result: ${result}`);
        }
+
+       function callFormat() {
+        var x = parseFloat(document.getElementById('n3').value);
+        var y = parseFloat(document.getElementById('n4').value);
+         const result = Module.ccall('formatInput',
+             'string',
+             ['number', 'number'],
+             [x, y]);
+  
+         console.log(`Result: ${result}`);
+       }
+
+
      </script>
      <script src="js_plumbing.js"></script>
    </body>
