@@ -70,46 +70,50 @@ EMSCRIPTEN_KEEPALIVE // Int format
     free(result);
  }
 
+int getPositionOfDecimalPoint(char* str)
+{
+    for (int i = 0; i < strlen(str); i++)
+    {
+        if (str[i] == '.')
+            return i;
+    }
+}
+
+
  EMSCRIPTEN_KEEPALIVE //Float format
+char* floatFormat(char* value, int desiredDecimals){
+    int length= strlen(value);
+    int positionOfDot = getPositionOfDecimalPoint(value);
 
-//  #include <math.h>
-
-// float val = 37.777779;
-
-// float rounded_down = floorf(val * 100) / 100;   /* Result: 37.77 */
-// float nearest = roundf(val * 100) / 100;  /* Result: 37.78 */
-// float rounded_up = ceilf(val * 100) / 100;      /* Result: 37.78 */
-
-// char* floatFormat(float value, int decimals){
-//     char* number = (char*)malloc(sizeof(char)*(20));
-//     if(decimals == 0){
-//         return (int) value;
-//     }
-//     int digitCount = pow(10, decimals);
-//     float floatNumber = floorf(value * digitCount)/ digitCount;
-//     gcvt(floatNumber, decimals, number);
-//     return number;
+    //case 0 decimals
+    if (desiredDecimals==0)
+    {
+        char* res = malloc(20);
+        strncpy(res, value, positionOfDot);
+        return res;
+    }
 
 
-// }
+    //case desiredNumber < actualNumber
+    int numOfDecimals = strlen(value) - positionOfDot-1;
+    if (desiredDecimals < numOfDecimals)
+    {
+        char* res = malloc(40);
+        strncpy(res, value, positionOfDot+desiredDecimals);
+        return res;
+    }
 
-char* floatFormat(char* value, int decimals){
-    char* number = (char*)malloc(sizeof(char)*(20));
-    
-    int digitCount = pow(10, decimals);
-    float floatNumber = floorf(value * digitCount)/ digitCount;
-    gcvt(floatNumber, decimals, number);
-    
-  
-    if (decimals == 0){
-        int temp = (int) floatNumber;
-        sprintf(number, "%d", temp);
-        return number;
+
+    //case desiredNumber > actualNumber
+    int toBeAdded=desiredDecimals-numOfDecimals;
+
+    char* res = malloc(30);
         
-    }
+    strcat(res, value);
+
+    for (int i=0;i<toBeAdded; i++)
+        strcat(res, "0");
     
-    for(int i = 0; i < decimals ; i++){
-        strcat(number, "0");
-    }
-    return number;
+    return res;
+    
 }
