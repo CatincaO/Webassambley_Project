@@ -12,7 +12,13 @@
      <input type="number" id="n3"/><br/><br/>
 
      <input type="number" id="n4"/><br/><br/>
-     <input type="button" value="Format" onclick="callFormat()" />
+     <input type="button" value="Format Int" onclick="callFormat()" />
+
+     <input type="number" id="n5"/><br/><br/>
+
+     <input type="number" id="n6"/><br/><br/>
+
+     <input type="button" value="Format Float" onclick="callFloatFormat()" />
      <script>
        function callAdd() {
         var x = parseFloat(document.getElementById('n1').value);
@@ -30,6 +36,17 @@
         var x = parseFloat(document.getElementById('n3').value);
         var y = parseFloat(document.getElementById('n4').value);
          const result = Module.ccall('formatInput',
+             'string',
+             ['number', 'number'],
+             [x, y]);
+  
+         console.log(`Result: ${result}`);
+       }
+       function callFloatFormat(){
+        var x = parseFloat(document.getElementById('n5').value);
+        var y = parseInt(document.getElementById('n6').value);
+
+        const result = Module.ccall('floatFormat',
              'string',
              ['number', 'number'],
              [x, y]);

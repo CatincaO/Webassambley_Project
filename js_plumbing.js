@@ -87,7 +87,7 @@ var nodePath;
 var requireNodeFS;
 
 if (ENVIRONMENT_IS_NODE) {
-  if (!(typeof process == 'object' && typeof require == 'function')) throw new Error('not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)');
+  if (typeof process == 'undefined' || !process.release || process.release.name !== 'node') throw new Error('not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)');
   if (ENVIRONMENT_IS_WORKER) {
     scriptDirectory = require('path').dirname(scriptDirectory) + '/';
   } else {
@@ -701,8 +701,8 @@ function writeStackCookie() {
   // The stack grow downwards towards _emscripten_stack_get_end.
   // We write cookies to the final two words in the stack and detect if they are
   // ever overwritten.
-  HEAP32[((max)>>2)] = 0x2135467;
-  HEAP32[(((max)+(4))>>2)] = 0x89BACDFE;
+  HEAPU32[((max)>>2)] = 0x2135467;
+  HEAPU32[(((max)+(4))>>2)] = 0x89BACDFE;
   // Also test the global address 0 for integrity.
   HEAPU32[0] = 0x63736d65; /* 'emsc' */
 }
@@ -1811,15 +1811,6 @@ var ASM_CONSTS = {
     }
 
 
-  var tempRet0 = 0;
-  function getTempRet0() {
-      return tempRet0;
-    }
-
-  function setTempRet0(val) {
-      tempRet0 = val;
-    }
-
 
 var ASSERTIONS = true;
 
@@ -1839,6 +1830,9 @@ var _Add = Module["_Add"] = createExportWrapper("Add");
 
 /** @type {function(...*):?} */
 var _formatInput = Module["_formatInput"] = createExportWrapper("formatInput");
+
+/** @type {function(...*):?} */
+var _floatFormat = Module["_floatFormat"] = createExportWrapper("floatFormat");
 
 /** @type {function(...*):?} */
 var ___errno_location = Module["___errno_location"] = createExportWrapper("__errno_location");
@@ -1917,14 +1911,13 @@ var unexportedRuntimeSymbols = [
   'abort',
   'keepRuntimeAlive',
   'wasmMemory',
+  'stackAlloc',
   'stackSave',
   'stackRestore',
-  'stackAlloc',
-  'writeStackCookie',
-  'checkStackCookie',
-  'tempRet0',
   'getTempRet0',
   'setTempRet0',
+  'writeStackCookie',
+  'checkStackCookie',
   'ptrToString',
   'zeroMemory',
   'stringToNewUTF8',
