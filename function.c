@@ -36,12 +36,9 @@ EMSCRIPTEN_KEEPALIVE // Int format
     formatInput(float value, int digits)
 {
 
-    int digitCount = countDigits(value);
+    //int digitCount = countDigits(value);
 
-    // value == 0
-
-    if (digitCount == 0)
-        return "0";
+    if ((int)value == 0) return "0";
 
     // value<digits
 
