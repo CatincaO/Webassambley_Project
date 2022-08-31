@@ -23,7 +23,7 @@ int countDigits(int value)
 char *invalidLength(int count, char c)
 {
     char *res = (char *)malloc(sizeof(char) * (count + 1));
-    fr(int i = 0; i < count; ++i)
+    for(int i = 0; i < count; ++i)
     {
         res[i] = c;
     }
@@ -33,7 +33,7 @@ char *invalidLength(int count, char c)
 
 EMSCRIPTEN_KEEPALIVE // Int format
     char *
-    formatInput(float value, int digits)
+    formatInt(float value, int digits)
 {
 
     //int digitCount = countDigits(value);

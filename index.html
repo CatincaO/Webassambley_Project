@@ -35,7 +35,7 @@
        function callFormat() {
         var x = parseFloat(document.getElementById('n3').value);
         var y = parseFloat(document.getElementById('n4').value);
-         const result = Module.ccall('formatInput',
+         const result = Module.ccall('formatInt',
              'string',
              ['number', 'number'],
              [x, y]);
