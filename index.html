@@ -1,61 +1,93 @@
 <!DOCTYPE html>
- <html>
-   <head>
-     <meta charset="utf-8"/>
-   </head>
-   <body>
-     <input type="button" value="Add" onclick="callAdd()" />
-     <input type="number" id="n1"/><br/><br/>
+<html>
 
-     <input type="number" id="n2"/><br/><br/>
+<head>
+  <meta charset="utf-8" />
+</head>
 
-     <input type="number" id="n3"/><br/><br/>
+<body>
+  <input type="button" value="Add" onclick="callAdd()" />
+  <input type="number" id="n1" /><br /><br />
 
-     <input type="number" id="n4"/><br/><br/>
-     <input type="button" value="Format Int" onclick="callFormat()" />
+  <input type="number" id="n2" /><br /><br />
 
-     <input type="number" id="n5"/><br/><br/>
+  <input type="number" id="n3" /><br /><br />
 
-     <input type="number" id="n6"/><br/><br/>
+  <input type="number" id="n4" /><br /><br />
+  <input type="button" value="Format Int" onclick="callFormat()" />
 
-     <input type="button" value="Format Float" onclick="callFloatFormat()" />
-     <script>
-       function callAdd() {
-        var x = parseFloat(document.getElementById('n1').value);
-        var y = parseFloat(document.getElementById('n2').value);
-        alert(x+y);
-         const result = Module.ccall('Add',
-             'number',
-             ['number', 'number'],
-             [x, y]);
-  
-         console.log(`Result: ${result}`);
-       }
+  <input type="number" id="n5" /><br /><br />
 
-       function callFormat() {
-        var x = parseFloat(document.getElementById('n3').value);
-        var y = parseFloat(document.getElementById('n4').value);
-         const result = Module.ccall('formatInt',
-             'string',
-             ['number', 'number'],
-             [x, y]);
-  
-         console.log(`Result: ${result}`);
-       }
-       function callFloatFormat(){
-        var x = parseFloat(document.getElementById('n5').value);
-        var y = parseInt(document.getElementById('n6').value);
+  <input type="number" id="n6" /><br /><br />
 
-        const result = Module.ccall('floatFormat',
-             'string',
-             ['number', 'number'],
-             [x, y]);
-  
-         console.log(`Result: ${result}`);
-       }
+  <input type="button" value="Format Float" onclick="callFloatFormat()" />
+  <div>
+    <p>API COMING UP</p>
+    <input type="number" id="api1" /><br /><br />
+    <input type="number" id="api2" /><br /><br />
+    <input type="button" value="Call API" onclick="callApi()" />
+
+  </div>
+  <script>
+    function callApi() {
+      var x = parseFloat(document.getElementById('api1').value);
+      var y = parseFloat(document.getElementById('api2').value);
 
 
-     </script>
-     <script src="js_plumbing.js"></script>
-   </body>
- </html>
+      fetch("https://localhost:7160/FormatInteger", {
+        method: 'POST',
+        body: JSON.stringify({
+          value: x,
+          decimals: y
+        }
+        ),
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin' : '*'
+        }
+      })
+      .then(function(response){
+        console.log(response);
+      })
+    }
+
+    function callAdd() {
+      var x = parseFloat(document.getElementById('n1').value);
+      var y = parseFloat(document.getElementById('n2').value);
+      alert(x + y);
+      const result = Module.ccall('Add',
+        'number',
+        ['number', 'number'],
+        [x, y]);
+
+      console.log(`Result: ${result}`);
+    }
+
+    function callFormat() {
+      var x = parseFloat(document.getElementById('n3').value);
+      var y = parseFloat(document.getElementById('n4').value);
+      const result = Module.ccall('formatInt',
+        'string',
+        ['number', 'number'],
+        [x, y]);
+
+      console.log(`Result: ${result}`);
+    }
+    function callFloatFormat() {
+      var x = parseFloat(document.getElementById('n5').value);
+      var y = parseInt(document.getElementById('n6').value);
+
+      const result = Module.ccall('floatFormat',
+        'string',
+        ['number', 'number'],
+        [x, y]);
+
+      console.log(`Result: ${result}`);
+    }
+
+
+  </script>
+  <script src="js_plumbing.js"></script>
+</body>
+
+</html>
