@@ -1,9 +1,9 @@
-typedef struct ValueFloat {
+typedef struct {
     float floatValue;
     int decimals;
-};
+} ValueFloat;
 
-typedef struct ValueInt {
+typedef struct {
     int intValue;
     int decimals;
-};
+} ValueInt ;
