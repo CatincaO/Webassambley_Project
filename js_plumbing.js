@@ -1844,6 +1844,21 @@ var _floatFormat = Module["_floatFormat"] = createExportWrapper("floatFormat");
 var _Add = Module["_Add"] = createExportWrapper("Add");
 
 /** @type {function(...*):?} */
+var _Subsctract = Module["_Subsctract"] = createExportWrapper("Subsctract");
+
+/** @type {function(...*):?} */
+var _Multiply = Module["_Multiply"] = createExportWrapper("Multiply");
+
+/** @type {function(...*):?} */
+var _Divide = Module["_Divide"] = createExportWrapper("Divide");
+
+/** @type {function(...*):?} */
+var _RelationalOperationsTest = Module["_RelationalOperationsTest"] = createExportWrapper("RelationalOperationsTest");
+
+/** @type {function(...*):?} */
+var _LogicalOperatorsTest = Module["_LogicalOperatorsTest"] = createExportWrapper("LogicalOperatorsTest");
+
+/** @type {function(...*):?} */
 var ___errno_location = Module["___errno_location"] = createExportWrapper("__errno_location");
 
 /** @type {function(...*):?} */

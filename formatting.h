@@ -45,6 +45,7 @@ EMSCRIPTEN_KEEPALIVE // Int format
         sprintf(result, "%d", (int)value);
 
         return result;
+
     }
 
     // value>digits

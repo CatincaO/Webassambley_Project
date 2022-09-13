@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
+#include <stdbool.h>
 
 #include "formatting.h"
 #include "function.h"
@@ -13,5 +14,45 @@ EMSCRIPTEN_KEEPALIVE
 int Add(int value1, int value2)
 {
     return (value1 + value2);
+}
+
+EMSCRIPTEN_KEEPALIVE
+int Subsctract(int value1, int value2)
+{
+    return value1-value2;
+}
+
+EMSCRIPTEN_KEEPALIVE
+int Multiply(int value1, int value2){
+    return value1*value2;
+}
+
+EMSCRIPTEN_KEEPALIVE
+float Divide(int value1, int value2)
+{
+    return value1/value2;
+}
+
+EMSCRIPTEN_KEEPALIVE
+bool RelationalOperationsTest(int value1, int value2)
+{
+    if (value1 == value2 || value1 != value2 || value1 >= value2 && value1 > value2 )
+        return true;
+    return false;
+}
+
+EMSCRIPTEN_KEEPALIVE
+bool LogicalOperatorsTest(bool value1, bool value2)
+{
+    if (!(value1 && value2) || value1 || value2)
+        return true;
+    return false;
+}
+
+//stress test
+
+for(int i=0;i<1000;i++)
+{
+    Multiply(10, 10);
 }
 
