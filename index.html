@@ -4,23 +4,63 @@
 <head>
   <meta charset="utf-8" />
 </head>
-
+<style>
+  .button{
+    display: inline;
+    width: 20%;
+    height:20%;
+    align-items: center;
+    background-color: rgb(208, 183, 231);
+    border: 2px
+  }
+</style>
 <body>
   <input type="number" id="n1" /><br /><br />
-
   <input type="number" id="n2" /><br /><br />
-  <input type="button" value="Add" onclick="callAdd()" /><br><br>
+  <input class="button" type="button" value="Add (+)" onclick="callAdd()" /><br><br>
+
+
+  <input type="number" id="n1_1" /><br /><br />
+  <input type="number" id="n2_1" /><br /><br />
+  <input class="button" type="button" value="Dif (-)" onclick="callDif()" /><br><br>
+
+
+  <input type="number" id="n1_2" /><br /><br />
+  <input type="number" id="n2_2" /><br /><br />
+  <input class="button" type="button" value="Multiply (*)" onclick="callMultiply()" /><br><br>
+
+
+  <input type="number" id="n1_3" /><br /><br />
+  <input type="number" id="n2_3" /><br /><br />
+  <input class="button" type="button" value="Divide (/)" onclick="callDivide()" /><br><br>
+
+
+
+  <input type="number" id="n1_4" /><br /><br />
+  <input type="number" id="n1_4" /><br /><br />
+  <input type="boolean" id="resultOp" placeholder="result"/><br /><br/>
+  <input class="button" type="button" value="Check Relational Operations" onclick="callRelationalOperation()" /><br><br>
+
+
+
+  <input type="number" id="n1_5" /><br /><br />
+  <input type="number" id="n1_5" /><br /><br />
+  <input type="boolean" id="resultLog" placeholder="result"/><br /><br/>
+  <input class="button" type="button" value="Check Logical Operations" onclick="callLogicalOperation()" /><br><br>
+
+
+
 
   <input type="number" id="n3" /><br /><br />
-
   <input type="number" id="n4" /><br /><br />
-  <input type="button" value="Format Int" onclick="callIntegerFormat()" /><br><br>
+  <input class="button" type="button" value="Format Int" onclick="callIntegerFormat()" /><br><br>
+
 
   <input type="number" id="n5" /><br /><br />
-
   <input type="number" id="n6" /><br /><br />
+  <input class="button" type="button" value="Format Float" onclick="callFloatFormat()" /><br><br>
 
-  <input type="button" value="Format Float" onclick="callFloatFormat()" /><br><br>
+
   <div>
     <p>API BELOW</p>
     <input type="number" id="api1" /><br /><br />
@@ -69,6 +109,71 @@
         [x, y]);
       console.log(`Result: ${result}`);
     }
+
+    function callDif(){
+      var x = parseFloat(document.getElementById('n1_1').value);
+      var y = parseFloat(document.getElementById('n2_1').value);
+      alert(x - y);
+      const result = Module.ccall('Subsctract',
+        'number',
+        ['number', 'number'],
+        [x, y]);
+      console.log(`Result: ${result}`);
+    }
+
+
+    function callMultiply(){
+      var x = parseFloat(document.getElementById('n1_2').value);
+      var y = parseFloat(document.getElementById('n2_2').value);
+      alert(x * y);
+      const result = Module.ccall('Multiply',
+        'number',
+        ['number', 'number'],
+        [x, y]);
+      console.log(`Result: ${result}`);
+    }
+
+    function callDivide(){
+      var x = parseFloat(document.getElementById('n1_3').value);
+      var y = parseFloat(document.getElementById('n2_3').value);
+      alert(x / y);
+      const result = Module.ccall('Divide',
+        'number',
+        ['number', 'number'],
+        [x, y]);
+      console.log(`Result: ${result}`);
+
+    }
+
+
+    function callRelationalOperation(){
+      var x = parseFloat(document.getElementById('n1_3').value);
+      var y = parseFloat(document.getElementById('n2_3').value);
+      const result = Module.ccall('RelationalOperationsTest',
+        'boolean',
+        ['number', 'number'],
+        [x, y]);
+      console.log(`Result: ${result}`);
+      document.getElementById('resultOp').value=result;
+
+    }
+
+
+
+    function callLogicalOperation(){
+      var x = parseFloat(document.getElementById('n1_4').value);
+      var y = parseFloat(document.getElementById('n2_4').value);
+      const result = Module.ccall('LogicalOperatorsTest',
+        'boolean',
+        ['number', 'number'],
+        [x, y]);
+      console.log(`Result: ${result}`);
+      document.getElementById('resultOp').value=result;
+
+    }
+
+
+
 
     function callIntegerFormat() {
       var x = parseFloat(document.getElementById('n3').value);
