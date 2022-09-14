@@ -48,11 +48,3 @@ bool LogicalOperatorsTest(bool value1, bool value2)
         return true;
     return false;
 }
-
-//stress test
-
-for(int i=0;i<1000;i++)
-{
-    Multiply(10, 10);
-}
-
