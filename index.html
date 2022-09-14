@@ -6,68 +6,112 @@
 </head>
 <style>
   .button{
-    display: inline;
-    width: 20%;
-    height:20%;
+    display: inline-block;
+    width: 10%;
+    height:10%;
+    left: 150px;
     align-items: center;
+    border-top-left-radius: 30px;
     background-color: rgb(208, 183, 231);
     border: 2px
   }
+
+  .buttonApi{
+    display: inline-block;
+    width: 10%;
+    height:10%;
+    left: 150px;
+    align-items: center;
+    background-color: brown;
+    border: 2px;
+    border-bottom: 30px;
+    border-top-left-radius: 30px;
+
+  }
+
+  .box1{
+    color: black;
+    background-color: blanchedalmond;
+    right: 45px;
+    border-radius: 20px;
+  
+  }
+
+  .box2{
+    color:black;
+    background-color: cornsilk;
+    right: 45px;
+    border-radius: 20px;
+
+  }
+
+  .boxResult{
+    color: red;
+    background-color: cadetblue;
+    border-radius: 20px;
+
+
+  }
 </style>
 <body>
-  <input type="number" id="n1" /><br /><br />
-  <input type="number" id="n2" /><br /><br />
+  <input class="box1" type="number" id="n1" placeholder="value 1" /><br /><br />
+  <input class="box1" type="number" id="n2" placeholder="value 2" /><br /><br />
   <input class="button" type="button" value="Add (+)" onclick="callAdd()" /><br><br>
+  <br><br>
 
 
-  <input type="number" id="n1_1" /><br /><br />
-  <input type="number" id="n2_1" /><br /><br />
+  <input class="box1" type="number" id="n1_1" placeholder="value 1" /><br /><br />
+  <input class="box1" type="number" id="n2_1" placeholder="value 2" /><br /><br />
   <input class="button" type="button" value="Dif (-)" onclick="callDif()" /><br><br>
+  <br><br>
 
 
-  <input type="number" id="n1_2" /><br /><br />
-  <input type="number" id="n2_2" /><br /><br />
+  <input class="box1" type="number" id="n1_2" placeholder="value 1" /><br /><br />
+  <input class="box1" type="number" id="n2_2" placeholder="value 2"/><br /><br />
   <input class="button" type="button" value="Multiply (*)" onclick="callMultiply()" /><br><br>
+  <br><br>
 
 
-  <input type="number" id="n1_3" /><br /><br />
-  <input type="number" id="n2_3" /><br /><br />
+  <input class="box1" type="number" id="n1_3" placeholder="value 1" /><br /><br />
+  <input class="box1" type="number" id="n2_3" placeholder="value 2"/><br /><br />
   <input class="button" type="button" value="Divide (/)" onclick="callDivide()" /><br><br>
+  <br><br>
 
 
 
-  <input type="number" id="n1_4" /><br /><br />
-  <input type="number" id="n1_4" /><br /><br />
-  <input type="boolean" id="resultOp" placeholder="result"/><br /><br/>
+  <input class="box1" type="number" id="n1_4" placeholder="value 1" /><br /><br />
+  <input class="box1" type="number" id="n2_4"  placeholder="value 2"/><br /><br />
+  <input class="boxResult" type="boolean" id="resultOp" placeholder="result"/><br /><br/>
   <input class="button" type="button" value="Check Relational Operations" onclick="callRelationalOperation()" /><br><br>
+  <br><br>
 
 
-
-  <input type="number" id="n1_5" /><br /><br />
-  <input type="number" id="n1_5" /><br /><br />
-  <input type="boolean" id="resultLog" placeholder="result"/><br /><br/>
+  <input class="box1" type="boolean" id="n1_5" placeholder="value 1"/><br /><br />
+  <input class="box1" type="boolean" id="n2_5" placeholder="value 2"/><br /><br />
+  <input class="boxResult" type="boolean" id="resultLog" placeholder="result"/><br /><br/>
   <input class="button" type="button" value="Check Logical Operations" onclick="callLogicalOperation()" /><br><br>
+  <br><br>
 
 
-
-
-  <input type="number" id="n3" /><br /><br />
-  <input type="number" id="n4" /><br /><br />
+  <input class="box1" type="number" id="n3" placeholder="int value" /><br /><br />
+  <input class="box1" type="number" id="n4" placeholder="decimals" /><br /><br />
+  <input class="boxResult" type="string" id="restInt" placeholder="result" /><br /><br />
   <input class="button" type="button" value="Format Int" onclick="callIntegerFormat()" /><br><br>
+  <br><br>
 
-
-  <input type="number" id="n5" /><br /><br />
-  <input type="number" id="n6" /><br /><br />
+  <input class="box1" type="string" id="n5" placeholder="float value" /><br /><br />
+  <input class="box1"  type="number" id="n6" placeholder="decimals" /><br /><br />
+  <input class="boxResult" type="string" id="restFloat" placeholder="result" /><br /><br />
   <input class="button" type="button" value="Format Float" onclick="callFloatFormat()" /><br><br>
-
+  <br><br>
 
   <div>
     <p>API BELOW</p>
-    <input type="number" id="api1" /><br /><br />
-    <input type="number" id="api2" /><br /><br />
-    <input type="button" value="Call API" onclick="callApiIntegerFormat()" />
+    <input class="box2" type="number" id="api1" placeholder="value1"/><br /><br />
+    <input class="box2" type="number" id="api2" placeholder="value2"/><br /><br />
+    <input class="buttonApi" type="button" value="Call API" onclick="callApiIntegerFormat()" />
     <p>Result</p>
-    <input type="text" id="result" /><br /><br />
+    <input class="boxResult" type="text" id="result" /><br /><br />
 
   </div>
   <script>
@@ -147,8 +191,8 @@
 
 
     function callRelationalOperation(){
-      var x = parseFloat(document.getElementById('n1_3').value);
-      var y = parseFloat(document.getElementById('n2_3').value);
+      var x = parseFloat(document.getElementById('n1_4').value);
+      var y = parseFloat(document.getElementById('n2_4').value);
       const result = Module.ccall('RelationalOperationsTest',
         'boolean',
         ['number', 'number'],
@@ -161,14 +205,14 @@
 
 
     function callLogicalOperation(){
-      var x = parseFloat(document.getElementById('n1_4').value);
-      var y = parseFloat(document.getElementById('n2_4').value);
+      var x = document.getElementById('n1_5').value;
+      var y = document.getElementById('n2_5').value;
       const result = Module.ccall('LogicalOperatorsTest',
         'boolean',
-        ['number', 'number'],
+        ['boolean', 'boolean'],
         [x, y]);
       console.log(`Result: ${result}`);
-      document.getElementById('resultOp').value=result;
+      document.getElementById('resultLog').value=result;
 
     }
 
@@ -188,7 +232,9 @@
         var endTime = performance.now();
         console.log(`Call to Webassembly took ${endTime - startTime} milliseconds`);
       console.log(`Result: ${result}`);
+      document.getElementById('restInt').value=result;
     }
+
     function callFloatFormat() {
       var x = document.getElementById('n5').value;
       var y = parseInt(document.getElementById('n6').value);
@@ -199,6 +245,7 @@
         [x, y]);
 
       console.log(`Result: ${result}`);
+      document.getElementById('restFloat').value=result;
     }
 
 
