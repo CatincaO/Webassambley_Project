@@ -7,324 +7,259 @@
 <style>
   .button {
     display: inline-block;
-    width: 10%;
-    height: 10%;
+    height: 25px;
     left: 150px;
     align-items: center;
-    border-top-left-radius: 30px;
-    background-color: rgb(208, 183, 231);
-    border: 2px
+    background-color: #ffffff;
+    border: 2px solid #003951;
+    border-radius: 5px;
+    color: #003951;
+    font-size: 12;
+    font-weight: 600;
+    width: 90px;
   }
 
   .buttonApi {
     display: inline-block;
-    width: 10%;
-    height: 10%;
+    height: 25px;
     left: 150px;
     align-items: center;
-    background-color: brown;
-    border: 2px;
-    border-bottom: 30px;
-    border-top-left-radius: 30px;
-
+    background-color: #ffffff;
+    border: 2px solid #003951;
+    border-radius: 5px;
+    color: #003951;
+    font-size: 12;
+    font-weight: 600;
+    width: 90px;
   }
 
   .box1 {
     color: black;
-    background-color: blanchedalmond;
-    right: 45px;
-    border-radius: 20px;
-
+    height: 24px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    border: solid 1px #969696;
   }
 
   .box2 {
     color: black;
-    background-color: cornsilk;
-    right: 45px;
-    border-radius: 20px;
-
+    height: 24px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    border: solid 1px #969696;
   }
 
   .boxResult {
-    color: red;
-    background-color: cadetblue;
-    border-radius: 20px;
+    color: blue;
+    background-color: rgb(219, 228, 228);
 
+  }
+
+  input {
+    margin-bottom: 4px;
 
   }
 </style>
 
 <body>
-  <input class="box1" type="number" id="n1" placeholder="value 1" /><br /><br />
-  <input class="box1" type="number" id="n2" placeholder="value 2" /><br /><br />
-  <input class="button" type="button" value="Add (+)" onclick="callAdd()" /><br><br>
-  <input class="button" type="button" value="TEST" onclick="testWebassembly()" /><br><br>
+  <div style="display: flex; flex-direction: column">
+    <div style="display: flex; flex-wrap: wrap;">
+      <p>OPERATIONS IN WEBASSEMBLY</p>
+      <div style="display: flex; flex-direction: row; margin-bottom: 20px; width: 100%;">
 
-  <br><br>
+        <div style="display: flex; flex-direction: column; width: 200px; margin-right: 20px;">
+          <input class="box1" type="number" id="n1" placeholder="value 1" />
+          <input class="box1" type="number" id="n2" placeholder="value 2" />
+          <input class="button" type="button" value="Add (+)" onclick="callAdd()" />
+        </div>
+        <div style="display: flex; flex-direction: column; width: 200px; margin-right: 20px;">
+          <input class="box1" type="number" id="n1_1" placeholder="value 1" />
+          <input class="box1" type="number" id="n2_1" placeholder="value 2" />
+          <input class="button" type="button" value="Dif (-)" onclick="callDif()" />
+        </div>
+        <div style="display: flex; flex-direction: column; width: 200px; margin-right: 20px;">
+          <input class="box1" type="number" id="n1_2" placeholder="value 1" />
+          <input class="box1" type="number" id="n2_2" placeholder="value 2" />
+          <input class="button" type="button" value="Multiply (*)" onclick="callMultiply()" />
+        </div>
+        <div style="display: flex; flex-direction: column; width: 200px; margin-right: 20px;">
+          <input class="box1" type="number" id="n1_3" placeholder="value 1" />
+          <input class="box1" type="number" id="n2_3" placeholder="value 2" />
+          <input class="button" type="button" value="Divide (/)" onclick="callDivide()" />
+        </div>
+      </div>
 
+      <div style="position:relative;">
+        <div style="margin: 0 auto;" >
+          <p>Webassembly - Format a number</p>
+          <input class="box1" type="number" id="n3" placeholder="Enter an integer" />
+          <input class="box1" type="number" id="n4" placeholder="Enter decimals" />
 
-  <input class="box1" type="number" id="n1_1" placeholder="value 1" /><br /><br />
-  <input class="box1" type="number" id="n2_1" placeholder="value 2" /><br /><br />
-  <input class="button" type="button" value="Dif (-)" onclick="callDif()" /><br><br>
-  <br><br>
-
-
-  <input class="box1" type="number" id="n1_2" placeholder="value 1" /><br /><br />
-  <input class="box1" type="number" id="n2_2" placeholder="value 2" /><br /><br />
-  <input class="button" type="button" value="Multiply (*)" onclick="callMultiply()" /><br><br>
-  <br><br>
-
-
-  <input class="box1" type="number" id="n1_3" placeholder="value 1" /><br /><br />
-  <input class="box1" type="number" id="n2_3" placeholder="value 2" /><br /><br />
-  <input class="button" type="button" value="Divide (/)" onclick="callDivide()" /><br><br>
-  <br><br>
-
-
-
-  <input class="box1" type="number" id="n1_4" placeholder="value 1" /><br /><br />
-  <input class="box1" type="number" id="n2_4" placeholder="value 2" /><br /><br />
-  <input class="boxResult" type="boolean" id="resultOp" placeholder="result" /><br /><br />
-  <input class="button" type="button" value="Check Relational Operations" onclick="callRelationalOperation()" /><br><br>
-  <br><br>
-
-
-  <input class="box1" type="boolean" id="n1_5" placeholder="value 1" /><br /><br />
-  <input class="box1" type="boolean" id="n2_5" placeholder="value 2" /><br /><br />
-  <input class="boxResult" type="boolean" id="resultLog" placeholder="result" /><br /><br />
-  <input class="button" type="button" value="Check Logical Operations" onclick="callLogicalOperation()" /><br><br>
-  <br><br>
-
-
-  <input class="box1" type="number" id="n3" placeholder="int value" /><br /><br />
-  <input class="box1" type="number" id="n4" placeholder="decimals" /><br /><br />
-  <input class="boxResult" type="string" id="restInt" placeholder="result" /><br /><br />
-  <input class="button" type="button" value="Format Int" onclick="callIntegerFormat()" /><br><br>
-  <br><br>
-
-  <input class="box1" type="string" id="n5" placeholder="float value" /><br /><br />
-  <input class="box1" type="number" id="n6" placeholder="decimals" /><br /><br />
-  <input class="boxResult" type="string" id="restFloat" placeholder="result" /><br /><br />
-  <input class="button" type="button" value="Format Float" onclick="callFloatFormat()" /><br><br>
-  <br><br>
-
-  <div>
-    <p>API BELOW</p>
-    <input class="box2" type="number" id="api1" placeholder="value1" /><br /><br />
-    <input class="box2" type="number" id="api2" placeholder="value2" /><br /><br />
-    <input class="buttonApi" type="button" value="Call API" onclick="callApiAdd()" />
-    <input class="buttonApi" type="button" value="TEST API" onclick="testApi()" />
-    <p>Result</p>
-    <input class="boxResult" type="text" id="result" /><br /><br />
-
+          <input class="button" type="button" value="Format " onclick="callIntegerFormat()" />
+          <label for="result">Result</label>
+          <input class="boxResult" type="string" id="restInt" placeholder="result" />
+          <label for="resultTime">Execution Time</label>
+          <input class="boxResult" type="number" id="restTime" placeholder="execution time" />
+        </div>
+        <div style="margin: 0 auto;">
+          <p>API - Format a number</p>
+          <input class="box2" type="number" id="api1" placeholder="Enter an integer" />
+          <input class="box2" type="number" id="api2" placeholder="Enter decimals" />
+          <input class="buttonApi" type="button" value="Call API" onclick="callApiIntegerFormat()" />
+          <label for="result">Result</label>
+          <input class="boxResult" type="text" id="result" placeholder="result" />
+          <label for="resultExe">Execution Time</label>
+          <input class="boxResult" type="text" id="resultExe"  placeholder="execution time" />
+        </div>
+      </div>
+    </div>
   </div>
 
+
   <script>
-    let loopCount = 10;
-    function testWebassembly() {
-      var x = parseFloat(document.getElementById('n1').value);
-      var y = parseFloat(document.getElementById('n2').value);
-      var startTime = performance.now();
-      for (let i = 0; i < loopCount; i++) {
-
-        const result = Module.ccall('formatInt',
-          'string',
-          ['number', 'number'],
-          [x, y]);
-      }
-
-      var endTime = performance.now();
-      console.log(`Call to Webassembly took ${endTime - startTime} milliseconds`);
-    }
-
-    function testApi() {
-      var x = parseFloat(document.getElementById('api1').value);
-      var y = parseFloat(document.getElementById('api2').value);
-
-      var startTime = performance.now();
-
-      for (let i = 0; i < loopCount; i++) {
-        fetch("https://localhost:7160/FormatInteger", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          value: x,
-          digits: y
-        }
-        ),
-      })
-      }
-      var endTime = performance.now();
-      console.log(`Call to API took ${endTime - startTime} milliseconds`);
-    }
-
     function callApiIntegerFormat() {
-      var x = parseFloat(document.getElementById('api1').value);
-      var y = parseFloat(document.getElementById('api2').value);
+      var x = parseFloat(document.getElementById("api1").value);
+      var y = parseFloat(document.getElementById("api2").value);
 
       var startTime = performance.now();
       fetch("https://localhost:7160/FormatInteger", {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           value: x,
-          digits: y
-        }
-        ),
+          digits: y,
+        }),
       })
         .then(function (response) {
-          return response.json()
+          return response.json();
         })
         .then(function (data) {
           console.log(data);
           var endTime = performance.now();
           console.log(`Call to API took ${endTime - startTime} milliseconds`);
+          document.getElementById("resultExe").value = (endTime - startTime);
 
-          document.getElementById('result').value = data.value;
-        })
-    }
-
-    function callApiAdd() {
-      var x = parseFloat(document.getElementById('api1').value);
-      var y = parseFloat(document.getElementById('api2').value);
-
-      var startTime = performance.now();
-      fetch("https://localhost:7160/addIntegers", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          value1: x,
-          value2: y
-        }
-        ),
-      })
-        .then(function (response) {
-          return response.json()
-        })
-        .then(function (data) {
-          console.log(data);
-          var endTime = performance.now();
-          console.log(`Call to API took ${endTime - startTime} milliseconds`);
-
-          document.getElementById('result').value = data.value1;
-        })
+          document.getElementById("result").value = data.value;
+        });
     }
 
     function callAdd() {
-      var x = parseFloat(document.getElementById('n1').value);
-      var y = parseFloat(document.getElementById('n2').value);
+      var x = parseFloat(document.getElementById("n1").value);
+      var y = parseFloat(document.getElementById("n2").value);
       alert(x + y);
-      const result = Module.ccall('Add',
-        'number',
-        ['number', 'number'],
-        [x, y]);
+      const result = Module.ccall(
+        "Add",
+        "number",
+        ["number", "number"],
+        [x, y]
+      );
       console.log(`Result: ${result}`);
     }
 
     function callDif() {
-      var x = parseFloat(document.getElementById('n1_1').value);
-      var y = parseFloat(document.getElementById('n2_1').value);
+      var x = parseFloat(document.getElementById("n1_1").value);
+      var y = parseFloat(document.getElementById("n2_1").value);
       alert(x - y);
-      const result = Module.ccall('Substract',
-        'number',
-        ['number', 'number'],
-        [x, y]);
+      const result = Module.ccall(
+        "Subsctract",
+        "number",
+        ["number", "number"],
+        [x, y]
+      );
       console.log(`Result: ${result}`);
     }
 
-
     function callMultiply() {
-      var x = parseFloat(document.getElementById('n1_2').value);
-      var y = parseFloat(document.getElementById('n2_2').value);
+      var x = parseFloat(document.getElementById("n1_2").value);
+      var y = parseFloat(document.getElementById("n2_2").value);
       alert(x * y);
-      const result = Module.ccall('Multiply',
-        'number',
-        ['number', 'number'],
-        [x, y]);
+      const result = Module.ccall(
+        "Multiply",
+        "number",
+        ["number", "number"],
+        [x, y]
+      );
       console.log(`Result: ${result}`);
     }
 
     function callDivide() {
-      var x = parseFloat(document.getElementById('n1_3').value);
-      var y = parseFloat(document.getElementById('n2_3').value);
+      var x = parseFloat(document.getElementById("n1_3").value);
+      var y = parseFloat(document.getElementById("n2_3").value);
       alert(x / y);
-      const result = Module.ccall('Divide',
-        'number',
-        ['number', 'number'],
-        [x, y]);
+      const result = Module.ccall(
+        "Divide",
+        "number",
+        ["number", "number"],
+        [x, y]
+      );
       console.log(`Result: ${result}`);
-
     }
-
 
     function callRelationalOperation() {
-      var x = parseFloat(document.getElementById('n1_4').value);
-      var y = parseFloat(document.getElementById('n2_4').value);
-      const result = Module.ccall('RelationalOperationsTest',
-        'boolean',
-        ['number', 'number'],
-        [x, y]);
+      var x = parseFloat(document.getElementById("n1_4").value);
+      var y = parseFloat(document.getElementById("n2_4").value);
+      const result = Module.ccall(
+        "RelationalOperationsTest",
+        "boolean",
+        ["number", "number"],
+        [x, y]
+      );
       console.log(`Result: ${result}`);
-      document.getElementById('resultOp').value = result;
-
+      document.getElementById("resultOp").value = result;
     }
-
-
 
     function callLogicalOperation() {
-      var x = document.getElementById('n1_5').value;
-      var y = document.getElementById('n2_5').value;
-      const result = Module.ccall('LogicalOperatorsTest',
-        'boolean',
-        ['boolean', 'boolean'],
-        [x, y]);
+      var x = document.getElementById("n1_5").value;
+      var y = document.getElementById("n2_5").value;
+      const result = Module.ccall(
+        "LogicalOperatorsTest",
+        "boolean",
+        ["boolean", "boolean"],
+        [x, y]
+      );
       console.log(`Result: ${result}`);
-      document.getElementById('resultLog').value = result;
-
+      document.getElementById("resultLog").value = result;
     }
 
-
-
-
     function callIntegerFormat() {
-      var x = parseFloat(document.getElementById('n3').value);
-      var y = parseFloat(document.getElementById('n4').value);
+      var x = parseFloat(document.getElementById("n3").value);
+      var y = parseFloat(document.getElementById("n4").value);
       var startTime = performance.now();
 
-      const result = Module.ccall('formatInt',
-        'string',
-        ['number', 'number'],
-        [x, y]);
+      const result = Module.ccall(
+        "formatInt",
+        "string",
+        ["number", "number"],
+        [x, y]
+      );
 
       var endTime = performance.now();
-      console.log(`Call to Webassembly took ${endTime - startTime} milliseconds`);
+      console.log(
+        `Call to Webassembly took ${endTime - startTime} milliseconds`
+      );
+      document.getElementById("restTime").value = (endTime - startTime);
       console.log(`Result: ${result}`);
-      document.getElementById('restInt').value = result;
+      document.getElementById("restInt").value = result;
     }
 
     function callFloatFormat() {
       var x = document.getElementById('n5').value;
       var y = parseInt(document.getElementById('n6').value);
 
-      var startTime = performance.now();
+      const result = Module.ccall(
+        "floatFormat",
+        "string",
+        ["string", "number"],
+        [x, y]
+      );
 
-      const result = Module.ccall('floatFormat',
-        'string',
-        ['string', 'number'],
-        [x, y]);
-
-      var endTime = performance.now();
-      console.log(`Call to Webassembly took ${endTime - startTime} milliseconds`);
       console.log(`Result: ${result}`);
-      document.getElementById('restFloat').value = result;
+      document.getElementById("restFloat").value = result;
     }
-
   </script>
   <script src="js_plumbing.js"></script>
 </body>
