@@ -1844,7 +1844,7 @@ var _floatFormat = Module["_floatFormat"] = createExportWrapper("floatFormat");
 var _Add = Module["_Add"] = createExportWrapper("Add");
 
 /** @type {function(...*):?} */
-var _Subsctract = Module["_Subsctract"] = createExportWrapper("Subsctract");
+var _Substract = Module["_Substract"] = createExportWrapper("Substract");
 
 /** @type {function(...*):?} */
 var _Multiply = Module["_Multiply"] = createExportWrapper("Multiply");

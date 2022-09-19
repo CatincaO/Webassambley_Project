@@ -5,10 +5,10 @@
   <meta charset="utf-8" />
 </head>
 <style>
-  .button{
+  .button {
     display: inline-block;
     width: 10%;
-    height:10%;
+    height: 10%;
     left: 150px;
     align-items: center;
     border-top-left-radius: 30px;
@@ -16,10 +16,10 @@
     border: 2px
   }
 
-  .buttonApi{
+  .buttonApi {
     display: inline-block;
     width: 10%;
-    height:10%;
+    height: 10%;
     left: 150px;
     align-items: center;
     background-color: brown;
@@ -29,23 +29,23 @@
 
   }
 
-  .box1{
+  .box1 {
     color: black;
     background-color: blanchedalmond;
     right: 45px;
     border-radius: 20px;
-  
+
   }
 
-  .box2{
-    color:black;
+  .box2 {
+    color: black;
     background-color: cornsilk;
     right: 45px;
     border-radius: 20px;
 
   }
 
-  .boxResult{
+  .boxResult {
     color: red;
     background-color: cadetblue;
     border-radius: 20px;
@@ -53,10 +53,13 @@
 
   }
 </style>
+
 <body>
   <input class="box1" type="number" id="n1" placeholder="value 1" /><br /><br />
   <input class="box1" type="number" id="n2" placeholder="value 2" /><br /><br />
   <input class="button" type="button" value="Add (+)" onclick="callAdd()" /><br><br>
+  <input class="button" type="button" value="TEST" onclick="testWebassembly()" /><br><br>
+
   <br><br>
 
 
@@ -67,28 +70,28 @@
 
 
   <input class="box1" type="number" id="n1_2" placeholder="value 1" /><br /><br />
-  <input class="box1" type="number" id="n2_2" placeholder="value 2"/><br /><br />
+  <input class="box1" type="number" id="n2_2" placeholder="value 2" /><br /><br />
   <input class="button" type="button" value="Multiply (*)" onclick="callMultiply()" /><br><br>
   <br><br>
 
 
   <input class="box1" type="number" id="n1_3" placeholder="value 1" /><br /><br />
-  <input class="box1" type="number" id="n2_3" placeholder="value 2"/><br /><br />
+  <input class="box1" type="number" id="n2_3" placeholder="value 2" /><br /><br />
   <input class="button" type="button" value="Divide (/)" onclick="callDivide()" /><br><br>
   <br><br>
 
 
 
   <input class="box1" type="number" id="n1_4" placeholder="value 1" /><br /><br />
-  <input class="box1" type="number" id="n2_4"  placeholder="value 2"/><br /><br />
-  <input class="boxResult" type="boolean" id="resultOp" placeholder="result"/><br /><br/>
+  <input class="box1" type="number" id="n2_4" placeholder="value 2" /><br /><br />
+  <input class="boxResult" type="boolean" id="resultOp" placeholder="result" /><br /><br />
   <input class="button" type="button" value="Check Relational Operations" onclick="callRelationalOperation()" /><br><br>
   <br><br>
 
 
-  <input class="box1" type="boolean" id="n1_5" placeholder="value 1"/><br /><br />
-  <input class="box1" type="boolean" id="n2_5" placeholder="value 2"/><br /><br />
-  <input class="boxResult" type="boolean" id="resultLog" placeholder="result"/><br /><br/>
+  <input class="box1" type="boolean" id="n1_5" placeholder="value 1" /><br /><br />
+  <input class="box1" type="boolean" id="n2_5" placeholder="value 2" /><br /><br />
+  <input class="boxResult" type="boolean" id="resultLog" placeholder="result" /><br /><br />
   <input class="button" type="button" value="Check Logical Operations" onclick="callLogicalOperation()" /><br><br>
   <br><br>
 
@@ -100,21 +103,63 @@
   <br><br>
 
   <input class="box1" type="string" id="n5" placeholder="float value" /><br /><br />
-  <input class="box1"  type="number" id="n6" placeholder="decimals" /><br /><br />
+  <input class="box1" type="number" id="n6" placeholder="decimals" /><br /><br />
   <input class="boxResult" type="string" id="restFloat" placeholder="result" /><br /><br />
   <input class="button" type="button" value="Format Float" onclick="callFloatFormat()" /><br><br>
   <br><br>
 
   <div>
     <p>API BELOW</p>
-    <input class="box2" type="number" id="api1" placeholder="value1"/><br /><br />
-    <input class="box2" type="number" id="api2" placeholder="value2"/><br /><br />
-    <input class="buttonApi" type="button" value="Call API" onclick="callApiIntegerFormat()" />
+    <input class="box2" type="number" id="api1" placeholder="value1" /><br /><br />
+    <input class="box2" type="number" id="api2" placeholder="value2" /><br /><br />
+    <input class="buttonApi" type="button" value="Call API" onclick="callApiAdd()" />
+    <input class="buttonApi" type="button" value="TEST API" onclick="testApi()" />
     <p>Result</p>
     <input class="boxResult" type="text" id="result" /><br /><br />
 
   </div>
+
   <script>
+    let loopCount = 10;
+    function testWebassembly() {
+      var x = parseFloat(document.getElementById('n1').value);
+      var y = parseFloat(document.getElementById('n2').value);
+      var startTime = performance.now();
+      for (let i = 0; i < loopCount; i++) {
+
+        const result = Module.ccall('formatInt',
+          'string',
+          ['number', 'number'],
+          [x, y]);
+      }
+
+      var endTime = performance.now();
+      console.log(`Call to Webassembly took ${endTime - startTime} milliseconds`);
+    }
+
+    function testApi() {
+      var x = parseFloat(document.getElementById('api1').value);
+      var y = parseFloat(document.getElementById('api2').value);
+
+      var startTime = performance.now();
+
+      for (let i = 0; i < loopCount; i++) {
+        fetch("https://localhost:7160/FormatInteger", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          value: x,
+          digits: y
+        }
+        ),
+      })
+      }
+      var endTime = performance.now();
+      console.log(`Call to API took ${endTime - startTime} milliseconds`);
+    }
+
     function callApiIntegerFormat() {
       var x = parseFloat(document.getElementById('api1').value);
       var y = parseFloat(document.getElementById('api2').value);
@@ -139,7 +184,35 @@
           var endTime = performance.now();
           console.log(`Call to API took ${endTime - startTime} milliseconds`);
 
-          document.getElementById('result').value=data.value;
+          document.getElementById('result').value = data.value;
+        })
+    }
+
+    function callApiAdd() {
+      var x = parseFloat(document.getElementById('api1').value);
+      var y = parseFloat(document.getElementById('api2').value);
+
+      var startTime = performance.now();
+      fetch("https://localhost:7160/addIntegers", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          value1: x,
+          value2: y
+        }
+        ),
+      })
+        .then(function (response) {
+          return response.json()
+        })
+        .then(function (data) {
+          console.log(data);
+          var endTime = performance.now();
+          console.log(`Call to API took ${endTime - startTime} milliseconds`);
+
+          document.getElementById('result').value = data.value1;
         })
     }
 
@@ -154,11 +227,11 @@
       console.log(`Result: ${result}`);
     }
 
-    function callDif(){
+    function callDif() {
       var x = parseFloat(document.getElementById('n1_1').value);
       var y = parseFloat(document.getElementById('n2_1').value);
       alert(x - y);
-      const result = Module.ccall('Subsctract',
+      const result = Module.ccall('Substract',
         'number',
         ['number', 'number'],
         [x, y]);
@@ -166,7 +239,7 @@
     }
 
 
-    function callMultiply(){
+    function callMultiply() {
       var x = parseFloat(document.getElementById('n1_2').value);
       var y = parseFloat(document.getElementById('n2_2').value);
       alert(x * y);
@@ -177,7 +250,7 @@
       console.log(`Result: ${result}`);
     }
 
-    function callDivide(){
+    function callDivide() {
       var x = parseFloat(document.getElementById('n1_3').value);
       var y = parseFloat(document.getElementById('n2_3').value);
       alert(x / y);
@@ -190,7 +263,7 @@
     }
 
 
-    function callRelationalOperation(){
+    function callRelationalOperation() {
       var x = parseFloat(document.getElementById('n1_4').value);
       var y = parseFloat(document.getElementById('n2_4').value);
       const result = Module.ccall('RelationalOperationsTest',
@@ -198,13 +271,13 @@
         ['number', 'number'],
         [x, y]);
       console.log(`Result: ${result}`);
-      document.getElementById('resultOp').value=result;
+      document.getElementById('resultOp').value = result;
 
     }
 
 
 
-    function callLogicalOperation(){
+    function callLogicalOperation() {
       var x = document.getElementById('n1_5').value;
       var y = document.getElementById('n2_5').value;
       const result = Module.ccall('LogicalOperatorsTest',
@@ -212,7 +285,7 @@
         ['boolean', 'boolean'],
         [x, y]);
       console.log(`Result: ${result}`);
-      document.getElementById('resultLog').value=result;
+      document.getElementById('resultLog').value = result;
 
     }
 
@@ -229,23 +302,27 @@
         ['number', 'number'],
         [x, y]);
 
-        var endTime = performance.now();
-        console.log(`Call to Webassembly took ${endTime - startTime} milliseconds`);
+      var endTime = performance.now();
+      console.log(`Call to Webassembly took ${endTime - startTime} milliseconds`);
       console.log(`Result: ${result}`);
-      document.getElementById('restInt').value=result;
+      document.getElementById('restInt').value = result;
     }
 
     function callFloatFormat() {
       var x = document.getElementById('n5').value;
       var y = parseInt(document.getElementById('n6').value);
 
+      var startTime = performance.now();
+
       const result = Module.ccall('floatFormat',
         'string',
         ['string', 'number'],
         [x, y]);
 
+      var endTime = performance.now();
+      console.log(`Call to Webassembly took ${endTime - startTime} milliseconds`);
       console.log(`Result: ${result}`);
-      document.getElementById('restFloat').value=result;
+      document.getElementById('restFloat').value = result;
     }
 
   </script>

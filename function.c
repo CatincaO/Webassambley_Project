@@ -17,7 +17,7 @@ int Add(int value1, int value2)
 }
 
 EMSCRIPTEN_KEEPALIVE
-int Subsctract(int value1, int value2)
+int Substract(int value1, int value2)
 {
     return value1-value2;
 }
